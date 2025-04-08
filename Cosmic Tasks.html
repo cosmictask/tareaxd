@@ -1,0 +1,2720 @@
+<!DOCTYPE html>
+<html lang="es" id="main-html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmic Tasks Premium 🪐</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Montserrat:wght@400;700&family=Poppins:wght@400;600&family=Quicksand:wght@500&family=Open+Sans&family=Lato&family=Nunito&family=Raleway&family=Playfair+Display&family=Comfortaa&family=Varela+Round&family=Nunito+Sans&display=swap" rel="stylesheet">
+    <style>
+        /* === VARIABLES CSS === */
+        :root {
+            --primary: #2ecc71;
+            --primary-dark: #27ae60;
+            --secondary: #3498db;
+            --secondary-dark: #2980b9; /* Added for consistency */
+            --accent: #9b59b6;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --danger-dark: #c0392b; /* Added for consistency */
+            --bg-light: #f8f9fa;
+            --text-light: #343a40;
+            --bg-dark: #212529;
+            --text-dark: #f8f9fa;
+            --card-bg-light: #ffffff;
+            --card-bg-dark: #2c3e50;
+            --border-light: #dee2e6;
+            --border-dark: #495057;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.15); /* Added for clarity */
+            --radius: 12px;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --font-main: 'Roboto', sans-serif;
+            --font-headings: 'Montserrat', sans-serif;
+            --font-special: 'Poppins', sans-serif;
+            --font-ui: 'Quicksand', sans-serif;
+        }
+
+        /* === ESTILOS BASE === */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            margin: 0;
+            padding: 0;
+            transition: var(--transition);
+            min-height: 100vh;
+            background-color: var(--bg-light);
+            color: var(--text-light);
+            line-height: 1.6;
+            font-size: 16px; /* Base font size */
+        }
+
+        #main-html[data-theme="dark"] body {
+            background-color: var(--bg-dark);
+            color: var(--text-dark);
+        }
+
+        #app-container {
+            min-height: 100vh;
+            transition: var(--transition);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-color: rgba(255, 255, 255, 0.92);
+            border: 15px solid var(--primary);
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #main-html[data-theme="dark"] #app-container {
+            background-color: rgba(0, 0, 0, 0.88);
+            border-color: var(--primary-dark);
+        }
+
+        main {
+            flex-grow: 1; /* Ensure main content takes available space */
+            padding: 1.5rem 5%;
+        }
+
+        /* === HEADER === */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background-color: var(--primary);
+            color: white;
+            box-shadow: var(--shadow);
+            position: sticky; /* Keep header visible */
+            top: 0;
+            z-index: 100;
+            font-family: var(--font-ui);
+            border-bottom: 3px solid rgba(255, 255, 255, 0.1);
+        }
+
+        #main-html[data-theme="dark"] header {
+             background-color: var(--primary-dark);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+            animation: float 3s ease-in-out infinite;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        /* === BOTONES === */
+        button, .btn /* Apply button styles also to elements with class .btn */
+        {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: var(--radius);
+            background-color: var(--primary);
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            transition: var(--transition);
+            font-family: var(--font-ui);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center; /* Center content */
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            text-decoration: none; /* For links styled as buttons */
+            vertical-align: middle; /* Align properly with text */
+            line-height: 1; /* Prevent extra space */
+        }
+
+        button:hover, .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+            background-color: var(--primary-dark);
+        }
+
+        button:active, .btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        button:disabled, .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        button.secondary, .btn.secondary {
+            background-color: var(--secondary);
+        }
+        button.secondary:hover, .btn.secondary:hover {
+            background-color: var(--secondary-dark);
+        }
+
+        button.danger, .btn.danger {
+            background-color: var(--danger);
+        }
+        button.danger:hover, .btn.danger:hover {
+            background-color: var(--danger-dark);
+        }
+
+        button.outline, .btn.outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        #main-html[data-theme="dark"] button.outline,
+        #main-html[data-theme="dark"] .btn.outline {
+            color: var(--text-dark);
+            border-color: var(--text-dark);
+        }
+
+        button.outline:hover, .btn.outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* Specific button sizes/styles */
+        .icon-button { /* For buttons with only an icon */
+             padding: 0.5rem;
+             min-width: 40px; /* Ensure minimum size */
+             min-height: 40px;
+             font-size: 1.2rem;
+        }
+        .edit-btn, .delete-btn, .complete-btn {
+             padding: 0.4rem 0.6rem;
+             font-size: 0.9rem;
+             border-radius: 6px;
+        }
+        .complete-btn { background-color: var(--success); }
+        .complete-btn:hover { background-color: var(--primary-dark); } /* Consistent hover */
+        .edit-btn { background-color: var(--warning); color: var(--text-light); }
+        .edit-btn:hover { background-color: #d68910; }
+        .delete-btn { background-color: var(--danger); }
+        .delete-btn:hover { background-color: var(--danger-dark); }
+
+
+        /* === MENÚ DE AJUSTES === */
+        .settings-menu {
+            position: fixed;
+            top: 0;
+            right: -400px; /* Start off-screen */
+            width: 380px;
+            max-width: 90vw; /* Max width on small screens */
+            height: 100vh;
+            background-color: var(--card-bg-light);
+            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.15);
+            transition: right 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            z-index: 1010; /* Above header */
+            padding: 1.5rem;
+            overflow-y: auto;
+            border-left: 5px solid var(--primary);
+            box-sizing: border-box;
+        }
+
+        #main-html[data-theme="dark"] .settings-menu {
+            background-color: var(--card-bg-dark);
+            color: var(--text-dark);
+            border-left-color: var(--primary-dark);
+        }
+
+        .settings-menu.active {
+            right: 0;
+        }
+
+        .settings-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .settings-header h2 {
+            margin: 0;
+            font-family: var(--font-headings);
+            color: var(--primary);
+            font-size: 1.4rem; /* Slightly smaller */
+        }
+
+        #main-html[data-theme="dark"] .settings-header {
+             border-bottom-color: var(--primary-dark);
+        }
+        #main-html[data-theme="dark"] .settings-header h2 {
+            color: var(--primary-dark);
+        }
+
+        .close-settings {
+            font-size: 1.5rem; /* Better size */
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--primary);
+            transition: transform 0.3s, color 0.3s;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            padding: 0; /* Remove default padding */
+        }
+
+        .close-settings:hover {
+            background-color: rgba(46, 204, 113, 0.1);
+            transform: rotate(90deg);
+            color: var(--danger); /* Indicate close action */
+        }
+
+        #main-html[data-theme="dark"] .close-settings {
+            color: var(--primary-dark);
+        }
+        #main-html[data-theme="dark"] .close-settings:hover {
+            background-color: rgba(39, 174, 96, 0.1);
+            color: var(--danger);
+        }
+
+        .settings-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border-light);
+            margin-bottom: 1.5rem;
+            gap: 0.5rem;
+            flex-wrap: wrap; /* Allow wrapping on small screens */
+        }
+
+        #main-html[data-theme="dark"] .settings-tabs {
+            border-bottom-color: var(--border-dark);
+        }
+
+        .settings-tab {
+            padding: 0.75rem 1.25rem;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: var(--transition);
+            font-family: var(--font-ui);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-light);
+            border-radius: var(--radius) var(--radius) 0 0;
+            background: none; /* Ensure no background by default */
+            border-top: none; /* Reset border */
+            border-left: none;
+            border-right: none;
+            font-size: 0.9rem;
+        }
+
+        #main-html[data-theme="dark"] .settings-tab {
+            color: var(--text-dark);
+        }
+
+        .settings-tab.active {
+            border-bottom-color: var(--primary);
+            font-weight: bold;
+            color: var(--primary);
+            background-color: rgba(46, 204, 113, 0.05); /* Subtle background */
+        }
+
+        #main-html[data-theme="dark"] .settings-tab.active {
+            border-bottom-color: var(--primary-dark);
+            color: var(--primary-dark);
+            background-color: rgba(39, 174, 96, 0.05);
+        }
+
+        .settings-content {
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); } /* Smoother fade */
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .settings-content.active {
+            display: block;
+        }
+
+        .settings-group {
+            margin-bottom: 2rem;
+            border-bottom: 1px dashed var(--border-light);
+            padding-bottom: 1.5rem;
+        }
+
+        #main-html[data-theme="dark"] .settings-group {
+            border-bottom-color: var(--border-dark);
+        }
+
+        .settings-group:last-child {
+            border-bottom: none;
+            margin-bottom: 0; /* Remove margin on last group */
+            padding-bottom: 0;
+        }
+
+        .settings-group-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-family: var(--font-headings);
+            font-size: 1.15rem; /* Slightly smaller */
+            border-bottom: 1px solid var(--border-light); /* Underline title */
+            padding-bottom: 0.5rem;
+        }
+
+        #main-html[data-theme="dark"] .settings-group-title {
+            color: var(--primary-dark);
+            border-bottom-color: var(--border-dark);
+        }
+
+        /* === FORMULARIOS === */
+        .form-group {
+            margin-bottom: 1.25rem; /* Slightly less margin */
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem; /* Closer to input */
+            font-weight: 500; /* Less bold */
+            font-family: var(--font-ui);
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        #main-html[data-theme="dark"] .form-group label {
+            color: var(--text-dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--border-light);
+            border-radius: var(--radius);
+            font-family: var(--font-main);
+            transition: var(--transition);
+            font-size: 1rem;
+            background-color: var(--card-bg-light);
+            color: var(--text-light);
+            box-sizing: border-box; /* Include padding/border in width */
+            line-height: 1.5; /* Ensure consistent line height */
+        }
+
+        #main-html[data-theme="dark"] .form-control {
+            background-color: var(--card-bg-dark);
+            color: var(--text-dark);
+            border-color: var(--border-dark);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.2);
+        }
+
+        #main-html[data-theme="dark"] .form-control:focus {
+            border-color: var(--primary-dark);
+            box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.2);
+        }
+
+        textarea.form-control {
+            min-height: 100px; /* Slightly smaller default */
+            resize: vertical;
+        }
+
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%232ecc71' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 16px 12px;
+            padding-right: 2.5rem; /* Space for arrow */
+        }
+
+        #main-html[data-theme="dark"] select.form-control {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%2327ae60' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+        }
+
+        .color-picker-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap; /* Allow wrapping */
+        }
+
+        .color-picker-label {
+            min-width: 100px; /* Adjust width */
+            font-weight: 500;
+            font-family: var(--font-ui);
+            flex-shrink: 0; /* Prevent shrinking */
+        }
+
+        input[type="color"] {
+            width: 50px; /* Smaller */
+            height: 35px;
+            border: 2px solid var(--border-light);
+            border-radius: 8px; /* Less round */
+            cursor: pointer;
+            background: var(--card-bg-light);
+            padding: 2px;
+            vertical-align: middle;
+        }
+
+        #main-html[data-theme="dark"] input[type="color"] {
+            border-color: var(--border-dark);
+            background: var(--card-bg-dark);
+        }
+
+        .range-container { /* Wrapper for range and value */
+             display: flex;
+             align-items: center;
+             gap: 1rem;
+        }
+        input[type="range"] {
+            flex-grow: 1; /* Take available space */
+            height: 8px;
+            border-radius: 4px;
+            background: var(--border-light);
+            appearance: none;
+            outline: none;
+            cursor: pointer;
+        }
+
+        #main-html[data-theme="dark"] input[type="range"] {
+            background: var(--border-dark);
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            appearance: none;
+            width: 18px; /* Slightly smaller */
+            height: 18px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid var(--card-bg-light); /* Add border for contrast */
+        }
+
+        #main-html[data-theme="dark"] input[type="range"]::-webkit-slider-thumb {
+            background: var(--primary-dark);
+            border-color: var(--card-bg-dark);
+        }
+
+        input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 5px var(--primary);
+        }
+        #main-html[data-theme="dark"] input[type="range"]::-webkit-slider-thumb:hover {
+             box-shadow: 0 0 5px var(--primary-dark);
+        }
+
+        /* For Firefox */
+        input[type="range"]::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+            border: 2px solid var(--card-bg-light);
+            transition: var(--transition);
+        }
+        #main-html[data-theme="dark"] input[type="range"]::-moz-range-thumb {
+             background: var(--primary-dark);
+             border-color: var(--card-bg-dark);
+        }
+         input[type="range"]::-moz-range-thumb:hover {
+             transform: scale(1.2);
+             box-shadow: 0 0 5px var(--primary);
+         }
+         #main-html[data-theme="dark"] input[type="range"]::-moz-range-thumb:hover {
+              box-shadow: 0 0 5px var(--primary-dark);
+         }
+
+        .range-value { /* Style for the % value next to range */
+            font-weight: 500;
+            min-width: 40px; /* Ensure space */
+            text-align: right;
+        }
+
+        .text-muted {
+            font-size: 0.85rem;
+            color: #6c757d;
+            display: block; /* Make it block */
+            margin-top: 0.25rem;
+        }
+        #main-html[data-theme="dark"] .text-muted {
+             color: #adb5bd;
+        }
+
+        /* === TARJETAS === */
+        .card {
+            background-color: var(--card-bg-light);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border-light); /* Subtle border */
+        }
+
+        #main-html[data-theme="dark"] .card {
+            background-color: var(--card-bg-dark);
+            border-color: var(--border-dark);
+        }
+
+        .card::before { /* Accent border */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        #main-html[data-theme="dark"] .card::before {
+            background-color: var(--primary-dark);
+        }
+
+        .card:hover {
+            transform: translateY(-5px) scale(1.01); /* Add subtle scale */
+            box-shadow: var(--shadow-hover);
+        }
+
+        .card:hover::before {
+            width: 8px; /* Slightly thicker on hover */
+        }
+
+        .task-header, .note-header, .subject-header { /* Common header styling */
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start; /* Align items top */
+            margin-bottom: 1rem;
+            gap: 1rem; /* Space between title and actions */
+        }
+
+        .task-title, .note-title, .subject-title { /* Title element */
+             margin: 0;
+             font-family: var(--font-headings);
+             font-size: 1.2rem;
+             word-break: break-word; /* Prevent long titles overflowing */
+             flex-grow: 1; /* Allow title to take space */
+        }
+
+        .task-actions, .note-actions, .subject-actions { /* Action buttons container */
+            display: flex;
+            gap: 0.5rem; /* Closer buttons */
+            align-items: center;
+            flex-shrink: 0; /* Prevent shrinking */
+        }
+
+        .difficulty {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem; /* Smaller */
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: white;
+            line-height: 1.2; /* Adjust line height */
+        }
+
+        .difficulty.easy { background-color: var(--success); }
+        .difficulty.medium { background-color: var(--warning); color: var(--text-light); } /* Better contrast */
+        .difficulty.hard { background-color: var(--danger); }
+
+        /* === ANIMACIÓN DE TAREA COMPLETADA === */
+        @keyframes starExplosion {
+            0% { transform: scale(0) rotate(0deg); opacity: 0; }
+            50% { transform: scale(1.5) rotate(180deg); opacity: 1; }
+            100% { transform: scale(0.5) rotate(360deg); opacity: 0; } /* Fade out smaller */
+        }
+
+        .completed-animation {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 5;
+            overflow: hidden; /* Keep stars inside */
+        }
+
+        .star {
+            position: absolute;
+            font-size: 1.5rem; /* Base size */
+            animation: starExplosion 1.2s ease-out forwards;
+            filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.7));
+            will-change: transform, opacity; /* Optimize animation */
+        }
+
+        /* === ARCHIVOS ADJUNTOS === */
+        .attachments-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1rem; /* Add space above */
+        }
+
+        .attachment {
+            display: inline-flex;
+            align-items: center;
+            background-color: rgba(46, 204, 113, 0.1);
+            padding: 0.4rem 0.8rem; /* Smaller padding */
+            border-radius: 6px; /* Less round */
+            font-size: 0.85rem;
+            gap: 0.5rem;
+            border: 1px solid rgba(46, 204, 113, 0.3); /* Less prominent border */
+            transition: var(--transition);
+            max-width: 100%; /* Prevent overflow */
+            word-break: break-all; /* Break long file names */
+        }
+
+        #main-html[data-theme="dark"] .attachment {
+            background-color: rgba(39, 174, 96, 0.1);
+            border-color: rgba(39, 174, 96, 0.3);
+        }
+
+        .attachment:hover {
+            background-color: rgba(46, 204, 113, 0.2);
+            transform: translateY(-2px);
+            border-color: var(--primary);
+        }
+        #main-html[data-theme="dark"] .attachment:hover {
+             border-color: var(--primary-dark);
+        }
+
+        .attachment-icon { /* Style for the icon */
+             font-size: 1rem;
+             flex-shrink: 0;
+        }
+
+        .delete-attachment {
+            background: none;
+            border: none;
+            color: inherit;
+            opacity: 0.7; /* Slightly faded */
+            cursor: pointer;
+            padding: 0 0 0 0.5rem; /* Space before X */
+            margin: 0;
+            font-size: 1.1rem;
+            transition: transform 0.2s, color 0.2s, opacity 0.2s;
+            line-height: 1; /* Prevent height issues */
+        }
+
+        .delete-attachment:hover {
+            transform: scale(1.2);
+            color: var(--danger);
+            opacity: 1;
+        }
+
+        /* === MODALES === */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            inset: 0; /* Covers entire screen */
+            background-color: rgba(0, 0, 0, 0.6); /* Darker backdrop */
+            z-index: 1005; /* Above header, below settings */
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(4px);
+            padding: 1rem; /* Padding around content */
+            opacity: 0; /* Start transparent */
+            transition: opacity 0.3s ease-out, display 0s 0.3s; /* Fade transition */
+        }
+        .modal.active {
+            display: flex; /* Show */
+            opacity: 1;
+            transition: opacity 0.3s ease-out;
+        }
+
+        .modal-content {
+            background-color: var(--card-bg-light);
+            border-radius: var(--radius);
+            padding: 2rem;
+            width: 100%; /* Full width on small screens */
+            max-width: 650px; /* Max width */
+            max-height: 90vh; /* Limit height */
+            overflow-y: auto; /* Scroll if needed */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            border-top: 5px solid var(--primary); /* Top accent border */
+            transform: translateY(-20px) scale(0.95); /* Start slightly up and small */
+            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+            opacity: 0;
+        }
+
+        #main-html[data-theme="dark"] .modal-content {
+            background-color: var(--card-bg-dark);
+            border-top-color: var(--primary-dark);
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0) scale(1); /* Animate in */
+            opacity: 1;
+        }
+
+        .modal-header { /* Optional header for modals */
+             display: flex;
+             justify-content: space-between;
+             align-items: center;
+             margin-bottom: 1.5rem;
+             padding-bottom: 1rem;
+             border-bottom: 1px solid var(--border-light);
+        }
+        #main-html[data-theme="dark"] .modal-header {
+            border-bottom-color: var(--border-dark);
+        }
+        .modal-header h2 {
+             margin: 0;
+             font-family: var(--font-headings);
+             color: var(--primary);
+             font-size: 1.5rem;
+        }
+         #main-html[data-theme="dark"] .modal-header h2 {
+              color: var(--primary-dark);
+         }
+
+
+        .close-modal {
+            position: absolute;
+            top: 1rem; /* Closer to corner */
+            right: 1rem;
+            font-size: 1.5rem; /* Match settings close button */
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--text-light); /* Less prominent */
+            opacity: 0.7;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: var(--transition);
+            font-weight: bold;
+            line-height: 1;
+            padding: 0;
+        }
+
+        .close-modal:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+            transform: rotate(90deg) scale(1.1);
+            color: var(--danger);
+            opacity: 1;
+        }
+
+        #main-html[data-theme="dark"] .close-modal {
+            color: var(--text-dark);
+        }
+        #main-html[data-theme="dark"] .close-modal:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* === NOTAS ESPECIALES === */
+        .note-card {
+            background-size: cover;
+            background-position: center;
+            color: white; /* Default text color */
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6); /* Improve readability */
+            position: relative;
+            overflow: hidden;
+            border: none;
+            min-height: 150px; /* Ensure min height */
+            display: flex; /* Use flex for content alignment */
+            flex-direction: column;
+        }
+
+        .note-card::before { /* Overlay for background images */
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.4); /* Dark overlay */
+            z-index: 0;
+            transition: background-color 0.3s ease;
+        }
+         .note-card:hover::before {
+              background-color: rgba(0, 0, 0, 0.55); /* Darker on hover */
+         }
+
+        /* If no background image, use a solid color */
+        .note-card:not([style*="background-image"])::before {
+             background-color: var(--accent); /* Use accent color */
+        }
+        .note-card:not([style*="background-image"]) {
+             color: white; /* Ensure white text on solid bg */
+        }
+
+
+        .note-content {
+            position: relative;
+            z-index: 1;
+            padding: 1.5rem;
+            border-radius: calc(var(--radius) - 2px);
+            flex-grow: 1; /* Allow content to fill space */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Push actions to bottom */
+        }
+        .note-content p {
+            margin-bottom: 1rem; /* Space before actions */
+        }
+
+
+        /* === PESTAÑAS (TABS) === */
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid var(--border-light);
+            margin-bottom: 1.5rem;
+            gap: 0.5rem;
+            flex-wrap: wrap; /* Allow tabs to wrap */
+        }
+
+        #main-html[data-theme="dark"] .tabs {
+            border-bottom-color: var(--border-dark);
+        }
+
+        .tab {
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: var(--transition);
+            font-family: var(--font-ui);
+            font-weight: 600;
+            color: var(--text-light);
+            border-radius: var(--radius) var(--radius) 0 0;
+            position: relative;
+            bottom: -2px; /* Align with border */
+            background: none;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            font-size: 1rem;
+            white-space: nowrap; /* Prevent wrapping text */
+        }
+
+        #main-html[data-theme="dark"] .tab {
+            color: var(--text-dark);
+        }
+
+        .tab:hover {
+            color: var(--primary);
+            background-color: rgba(46, 204, 113, 0.05);
+        }
+         #main-html[data-theme="dark"] .tab:hover {
+             color: var(--primary-dark);
+             background-color: rgba(39, 174, 96, 0.05);
+         }
+
+        .tab.active {
+            border-bottom-color: var(--primary);
+            color: var(--primary);
+            background-color: rgba(46, 204, 113, 0.1);
+        }
+
+        #main-html[data-theme="dark"] .tab.active {
+            border-bottom-color: var(--primary-dark);
+            color: var(--primary-dark);
+            background-color: rgba(39, 174, 96, 0.1);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease-out; /* Use existing fadeIn */
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* === GRID DE NOTAS / MATERIAS === */
+        .notes-grid, .subjects-grid /* Use grid for subjects too */
+        {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        #subjects-container .card { /* Specific styles for subject cards if needed */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+         .subject-info {
+              display: flex;
+              align-items: center;
+              gap: 1rem;
+              flex-grow: 1;
+         }
+         .subject-info span { /* Icon */
+              font-size: 1.8rem;
+              flex-shrink: 0;
+         }
+         .subject-info h3 {
+              margin: 0;
+         }
+
+        /* === ESTADOS VACÍOS === */
+        .empty-state {
+            text-align: center;
+            padding: 2rem;
+            color: #6c757d;
+            border: 2px dashed var(--border-light);
+            border-radius: var(--radius);
+            margin-top: 1rem;
+            font-style: italic;
+        }
+        #main-html[data-theme="dark"] .empty-state {
+            color: #adb5bd;
+            border-color: var(--border-dark);
+        }
+
+
+        /* === EFECTOS ESPECIALES === */
+        .shake {
+            animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+        }
+
+        @keyframes shake {
+          10%, 90% { transform: translate3d(-1px, 0, 0); }
+          20%, 80% { transform: translate3d(2px, 0, 0); }
+          30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+          40%, 60% { transform: translate3d(4px, 0, 0); }
+        }
+
+        /* === TOOLTIPS === */
+        [data-tooltip] {
+            position: relative;
+        }
+
+        [data-tooltip]::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%; /* Position above */
+            left: 50%;
+            transform: translateX(-50%) translateY(-5px); /* Start slightly up */
+            background-color: #333;
+            color: white;
+            padding: 0.4rem 0.8rem; /* Smaller padding */
+            border-radius: 4px;
+            font-size: 0.8rem; /* Smaller font */
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s 0.2s; /* Fade and move */
+            z-index: 1020; /* Above most elements */
+            margin-bottom: 8px; /* Space from element */
+            font-family: var(--font-main);
+            pointer-events: none; /* Prevent tooltip from blocking clicks */
+        }
+
+        [data-tooltip]:hover::after {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0); /* Move into place */
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 992px) {
+             main {
+                  padding: 1.5rem 3%;
+             }
+             header {
+                 padding: 1rem 3%;
+             }
+        }
+
+        @media (max-width: 768px) {
+            .settings-menu {
+                width: 95%; /* Almost full width */
+                right: -95%;
+                max-width: none; /* Remove max-width */
+            }
+            .settings-menu.active {
+                right: 0;
+            }
+
+            header {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+                position: static; /* Header no longer sticky on small screens */
+            }
+            .logo {
+                 font-size: 1.3rem;
+            }
+            .header-actions {
+                width: 100%;
+                justify-content: space-around; /* Distribute buttons */
+            }
+
+            main {
+                padding: 1rem;
+            }
+
+            .notes-grid, .subjects-grid {
+                grid-template-columns: 1fr; /* Single column */
+                gap: 1rem;
+            }
+
+            .modal-content {
+                width: 95%;
+                padding: 1.5rem;
+                max-height: 85vh;
+            }
+             .tabs, .settings-tabs {
+                  gap: 0.25rem; /* Reduce gap between tabs */
+             }
+             .tab, .settings-tab {
+                  padding: 0.6rem 1rem; /* Smaller tabs */
+                  font-size: 0.9rem;
+             }
+        }
+         @media (max-width: 480px) {
+              body { font-size: 15px; }
+              .logo { font-size: 1.2rem; }
+              button, .btn { padding: 0.6rem 1.2rem; font-size: 0.9rem; }
+              .modal-header h2 { font-size: 1.3rem; }
+         }
+
+    </style>
+</head>
+<body>
+    <!-- App Container wraps everything -->
+    <div id="app-container">
+        <header>
+            <div class="logo">
+                <span class="logo-icon">🚀</span>
+                <span>Cosmic Tasks Premium</span>
+            </div>
+            <div class="header-actions">
+                <button id="settings-btn" class="icon-button" data-tooltip="Configuración" aria-label="Abrir configuración">⚙️</button>
+                <button id="theme-toggle" class="icon-button" data-tooltip="Cambiar tema" aria-label="Cambiar tema claro/oscuro">🌓</button>
+                <button id="logout-btn" style="display:none;" data-tooltip="Cerrar sesión">👤 Salir</button>
+            </div>
+        </header>
+
+        <!-- Settings Menu (Off-canvas) -->
+        <div class="settings-menu" id="settings-menu">
+            <div class="settings-header">
+                <h2>Configuración Premium</h2>
+                <button class="close-settings icon-button" data-tooltip="Cerrar" aria-label="Cerrar configuración">&times;</button>
+            </div>
+
+            <div class="settings-tabs">
+                <button class="settings-tab active" data-tab="app">🎨 Apariencia</button>
+                <button class="settings-tab" data-tab="fonts">🔤 Fuentes</button>
+                <button class="settings-tab" data-tab="sounds">🔊 Sonidos</button>
+            </div>
+
+            <!-- Settings Content Panes -->
+            <div class="settings-content active" id="app-settings">
+                <div class="settings-group">
+                    <h3 class="settings-group-title">🎨 Colores Principales</h3>
+                    <div class="form-group">
+                        <div class="color-picker-container">
+                            <label for="primary-color" class="color-picker-label">Primario:</label>
+                            <input type="color" id="primary-color" value="#2ecc71">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                         <div class="color-picker-container">
+                            <label for="secondary-color" class="color-picker-label">Secundario:</label>
+                            <input type="color" id="secondary-color" value="#3498db">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="color-picker-container">
+                            <label for="accent-color" class="color-picker-label">Acento:</label>
+                            <input type="color" id="accent-color" value="#9b59b6">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-group">
+                    <h3 class="settings-group-title">🌄 Fondo de Pantalla</h3>
+                    <div class="form-group">
+                        <label for="app-bg-image">URL de la imagen:</label>
+                        <input type="text" id="app-bg-image" class="form-control" placeholder="https://ejemplo.com/imagen.jpg">
+                        <small class="text-muted">Deja vacío para un fondo sólido</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="app-bg-opacity">Opacidad del fondo:</label>
+                        <div class="range-container">
+                             <input type="range" id="app-bg-opacity" min="0" max="100" value="90" class="form-control">
+                             <span class="range-value"><span id="opacity-value">90</span>%</span>
+                        </div>
+                    </div>
+                </div>
+                 <button id="save-settings" class="btn" style="width: 100%;">💾 Guardar Configuración</button>
+            </div>
+
+            <div class="settings-content" id="fonts-settings">
+                <div class="settings-group">
+                    <h3 class="settings-group-title">✍️ Tipografía</h3>
+                     <div class="form-group">
+                        <label for="font-main">Fuente Principal:</label>
+                        <select id="font-main" class="form-control">
+                            <option value="'Roboto', sans-serif">Roboto</option>
+                            <option value="'Open Sans', sans-serif">Open Sans</option>
+                            <option value="'Lato', sans-serif">Lato</option>
+                            <option value="'Nunito', sans-serif">Nunito</option>
+                            <option value="'Quicksand', sans-serif">Quicksand</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="font-headings">Títulos:</label>
+                        <select id="font-headings" class="form-control">
+                            <option value="'Montserrat', sans-serif">Montserrat</option>
+                            <option value="'Poppins', sans-serif">Poppins</option>
+                            <option value="'Raleway', sans-serif">Raleway</option>
+                            <option value="'Playfair Display', serif">Playfair Display</option>
+                             <option value="'Roboto', sans-serif">Roboto</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="font-ui">Interfaz (Botones, Tabs):</label>
+                        <select id="font-ui" class="form-control">
+                            <option value="'Quicksand', sans-serif">Quicksand</option>
+                            <option value="'Comfortaa', sans-serif">Comfortaa</option>
+                            <option value="'Varela Round', sans-serif">Varela Round</option>
+                            <option value="'Nunito Sans', sans-serif">Nunito Sans</option>
+                             <option value="'Roboto', sans-serif">Roboto</option>
+                        </select>
+                    </div>
+                </div>
+                 <button id="save-settings-fonts" class="btn" style="width: 100%;">💾 Guardar Fuentes</button>
+            </div>
+
+            <div class="settings-content" id="sounds-settings">
+                 <div class="settings-group">
+                    <h3 class="settings-group-title">🔊 Efectos de Sonido</h3>
+                    <div class="form-group">
+                        <label style="display: flex; align-items: center; gap: 0.5rem;">
+                            <input type="checkbox" id="sounds-enabled" checked style="width: 20px; height: 20px;">
+                            <span>Activar sonidos</span>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="volume-level">Volumen:</label>
+                         <div class="range-container">
+                            <input type="range" id="volume-level" min="0" max="100" value="70" class="form-control">
+                            <span class="range-value"><span id="volume-value">70</span>%</span>
+                        </div>
+                    </div>
+                </div>
+                <button id="save-settings-sounds" class="btn" style="width: 100%;">💾 Guardar Sonidos</button>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <main>
+            <!-- Authentication Section -->
+            <section class="card" id="auth-section">
+                 <div class="modal-header" style="border: none; padding: 0 0 1rem 0; margin-bottom: 1rem;">
+                      <h2>🔐 Iniciar Sesión</h2>
+                 </div>
+                <form id="auth-form">
+                    <div class="form-group">
+                        <label for="auth-email">Correo Electrónico</label>
+                        <input type="email" id="auth-email" class="form-control" placeholder="tu@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="auth-password">Contraseña</label>
+                        <input type="password" id="auth-password" class="form-control" placeholder="••••••••" required minlength="8">
+                        <small class="text-muted">Mínimo 8 caracteres</small>
+                    </div>
+                    <div class="form-group" style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <button type="submit" id="login-btn" class="btn">🔑 Iniciar Sesión</button>
+                        <button type="button" id="signup-btn" class="btn secondary">📝 Registrarse</button>
+                    </div>
+                </form>
+                <div id="auth-status" style="margin-top: 1rem; font-weight: bold;" aria-live="polite"></div>
+            </section>
+
+            <!-- User Content (Hidden initially) -->
+            <div id="user-content" style="display:none;">
+                <!-- Main Tabs -->
+                <div class="tabs">
+                    <button class="tab active" data-tab="tasks">📋 Mis Tareas</button>
+                    <button class="tab" data-tab="notes">📝 Notas</button>
+                    <button class="tab" data-tab="subjects">📚 Materias</button>
+                </div>
+
+                <!-- Tab Content Panes -->
+                <div class="tab-content active" id="tasks-tab">
+                    <button id="add-task-btn" class="btn" style="margin-bottom: 1.5rem;">➕ Nueva Tarea</button>
+                    <div id="tasks-container">
+                        <!-- Tasks will be loaded here -->
+                         <!-- Empty state placeholder -->
+                    </div>
+                </div>
+
+                <div class="tab-content" id="notes-tab">
+                    <button id="add-note-btn" class="btn" style="margin-bottom: 1.5rem;">➕ Nueva Nota</button>
+                    <div class="notes-grid" id="notes-container">
+                        <!-- Notes will be loaded here -->
+                         <!-- Empty state placeholder -->
+                    </div>
+                </div>
+
+                <div class="tab-content" id="subjects-tab">
+                    <button id="add-subject-btn" class="btn" style="margin-bottom: 1.5rem;">➕ Nueva Materia</button>
+                    <div class="subjects-grid" id="subjects-container">
+                        <!-- Subjects will be loaded here -->
+                         <!-- Empty state placeholder -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal" id="task-modal">
+        <div class="modal-content">
+             <div class="modal-header">
+                  <h2 id="modal-task-title">📝 Nueva Tarea</h2>
+                  <button class="close-modal icon-button" data-tooltip="Cerrar" aria-label="Cerrar modal">&times;</button>
+             </div>
+            <form id="task-form">
+                <input type="hidden" id="task-id">
+                 <div class="form-group">
+                    <label for="task-subject">Materia:</label>
+                    <select id="task-subject" class="form-control" required>
+                        <option value="">-- Selecciona una materia --</option>
+                        <!-- Options populated by JS -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="task-title">Título:</label>
+                    <input type="text" id="task-title" class="form-control" placeholder="Ej: Hacer resumen capítulo 3" required>
+                </div>
+                <div class="form-group">
+                    <label for="task-description">Descripción (Opcional):</label>
+                    <textarea id="task-description" class="form-control" rows="3" placeholder="Añade detalles o pasos aquí..."></textarea>
+                </div>
+                 <div class="form-group">
+                    <label for="task-difficulty">Dificultad:</label>
+                    <select id="task-difficulty" class="form-control" required>
+                        <option value="easy">🟢 Fácil</option>
+                        <option value="medium" selected>🟡 Media</option> <!-- Default to medium -->
+                        <option value="hard">🔴 Difícil</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="task-due">Fecha de entrega (Opcional):</label>
+                    <input type="date" id="task-due" class="form-control">
+                </div>
+                 <div class="form-group">
+                    <label for="task-attachments-input">Archivos adjuntos:</label>
+                    <div class="attachments-container" id="task-attachments-preview"></div>
+                    <input type="file" id="task-attachments-input" multiple style="display: none;">
+                    <button type="button" id="add-task-attachments-btn" class="btn secondary" style="margin-top: 0.5rem;">📎 Agregar archivos</button>
+                    <small class="text-muted">Puedes seleccionar múltiples archivos (imágenes, PDFs, etc.)</small>
+                </div>
+                <div class="form-group" style="margin-top: 2rem;">
+                    <button type="submit" class="btn" style="width: 100%;">💾 Guardar Tarea</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="note-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-note-title">📝 Nueva Nota</h2>
+                 <button class="close-modal icon-button" data-tooltip="Cerrar" aria-label="Cerrar modal">&times;</button>
+            </div>
+            <form id="note-form">
+                <input type="hidden" id="note-id">
+                <div class="form-group">
+                    <label for="note-title">Título:</label>
+                    <input type="text" id="note-title" class="form-control" placeholder="Título de la nota" required>
+                </div>
+                <div class="form-group">
+                    <label for="note-content">Contenido:</label>
+                    <textarea id="note-content" class="form-control" rows="6" placeholder="Escribe tu nota aquí..." required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="note-bg">Fondo (URL o #hex):</label>
+                    <input type="text" id="note-bg" class="form-control" placeholder="URL de imagen o #c0ffee">
+                     <small class="text-muted">Déjalo vacío para el color de acento por defecto.</small>
+                </div>
+                 <div class="form-group">
+                    <div class="color-picker-container">
+                         <label for="note-text-color" class="color-picker-label">Color de texto:</label>
+                         <input type="color" id="note-text-color" value="#ffffff">
+                    </div>
+                </div>
+                 <!-- Note attachments similar to tasks -->
+                <!--
+                <div class="form-group">
+                    <label>Archivos adjuntos:</label>
+                    <div class="attachments-container" id="note-attachments-preview"></div>
+                    <input type="file" id="note-attachments-input" multiple style="display: none;">
+                    <button type="button" id="add-note-attachments-btn" class="btn secondary">📎 Agregar archivos</button>
+                </div>
+                -->
+                <div class="form-group" style="margin-top: 2rem;">
+                    <button type="submit" class="btn" style="width: 100%;">💾 Guardar Nota</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="subject-modal">
+        <div class="modal-content">
+             <div class="modal-header">
+                 <h2 id="modal-subject-title">📚 Nueva Materia</h2>
+                 <button class="close-modal icon-button" data-tooltip="Cerrar" aria-label="Cerrar modal">&times;</button>
+             </div>
+            <form id="subject-form">
+                <input type="hidden" id="subject-id">
+                <div class="form-group">
+                    <label for="subject-name">Nombre:</label>
+                    <input type="text" id="subject-name" class="form-control" placeholder="Ej: Matemáticas Avanzadas" required>
+                </div>
+                <div class="form-group">
+                    <div class="color-picker-container">
+                        <label for="subject-color" class="color-picker-label">Color:</label>
+                        <input type="color" id="subject-color" value="#2ecc71">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="subject-icon">Ícono (emoji):</label>
+                    <input type="text" id="subject-icon" class="form-control" placeholder="📚, 🧪, 🔬 (máx 2 chars)" maxlength="2">
+                </div>
+                <div class="form-group" style="margin-top: 2rem;">
+                    <button type="submit" class="btn" style="width: 100%;">💾 Guardar Materia</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // === GLOBAL STATE & CONFIG ===
+        let currentUser = null;
+        let tasks = [];
+        let notes = [];
+        let subjects = [];
+        let userSettings = {
+            theme: 'light',
+            colors: { primary: '#2ecc71', secondary: '#3498db', accent: '#9b59b6' },
+            fonts: { main: "'Roboto', sans-serif", headings: "'Montserrat', sans-serif", ui: "'Quicksand', sans-serif" },
+            sounds: { enabled: true, volume: 0.7 },
+            appBackground: '',
+            appBackgroundOpacity: 90
+        };
+
+        // Store file objects temporarily for modal submission
+        let tempTaskAttachments = [];
+        // let tempNoteAttachments = []; // If implementing note attachments
+
+        // === DOM Elements (Cache common ones) ===
+        const DOM = {
+            html: document.getElementById('main-html'),
+            appContainer: document.getElementById('app-container'),
+            // Header
+            settingsBtn: document.getElementById('settings-btn'),
+            themeToggleBtn: document.getElementById('theme-toggle'),
+            logoutBtn: document.getElementById('logout-btn'),
+            // Settings Menu
+            settingsMenu: document.getElementById('settings-menu'),
+            closeSettingsBtn: document.querySelector('.close-settings'),
+            settingsTabsContainer: document.querySelector('.settings-tabs'),
+            settingsContentContainers: document.querySelectorAll('.settings-content'),
+            saveSettingsBtn: document.getElementById('save-settings'), // Combined save button
+            primaryColorInput: document.getElementById('primary-color'),
+            secondaryColorInput: document.getElementById('secondary-color'),
+            accentColorInput: document.getElementById('accent-color'),
+            appBgImageInput: document.getElementById('app-bg-image'),
+            appBgOpacityInput: document.getElementById('app-bg-opacity'),
+            opacityValueSpan: document.getElementById('opacity-value'),
+            fontMainSelect: document.getElementById('font-main'),
+            fontHeadingsSelect: document.getElementById('font-headings'),
+            fontUiSelect: document.getElementById('font-ui'),
+            soundsEnabledCheckbox: document.getElementById('sounds-enabled'),
+            volumeLevelInput: document.getElementById('volume-level'),
+            volumeValueSpan: document.getElementById('volume-value'),
+            // Auth
+            authSection: document.getElementById('auth-section'),
+            authForm: document.getElementById('auth-form'),
+            authEmailInput: document.getElementById('auth-email'),
+            authPasswordInput: document.getElementById('auth-password'),
+            loginBtn: document.getElementById('login-btn'),
+            signupBtn: document.getElementById('signup-btn'),
+            authStatusDiv: document.getElementById('auth-status'),
+            // User Content
+            userContentDiv: document.getElementById('user-content'),
+            tabsContainer: document.querySelector('.tabs'),
+            tabContents: document.querySelectorAll('.tab-content'),
+            // Tasks
+            addTaskBtn: document.getElementById('add-task-btn'),
+            tasksContainer: document.getElementById('tasks-container'),
+            taskModal: document.getElementById('task-modal'),
+            taskForm: document.getElementById('task-form'),
+            modalTaskTitle: document.getElementById('modal-task-title'),
+            taskIdInput: document.getElementById('task-id'),
+            taskSubjectSelect: document.getElementById('task-subject'),
+            taskTitleInput: document.getElementById('task-title'),
+            taskDescriptionInput: document.getElementById('task-description'),
+            taskDifficultySelect: document.getElementById('task-difficulty'),
+            taskDueInput: document.getElementById('task-due'),
+            taskAttachmentsPreview: document.getElementById('task-attachments-preview'),
+            taskAttachmentsInput: document.getElementById('task-attachments-input'),
+            addTaskAttachmentsBtn: document.getElementById('add-task-attachments-btn'),
+            // Notes
+            addNoteBtn: document.getElementById('add-note-btn'),
+            notesContainer: document.getElementById('notes-container'),
+            noteModal: document.getElementById('note-modal'),
+            noteForm: document.getElementById('note-form'),
+            modalNoteTitle: document.getElementById('modal-note-title'), // Added ID in HTML needed
+            noteIdInput: document.getElementById('note-id'),
+            noteTitleInput: document.getElementById('note-title'),
+            noteContentInput: document.getElementById('note-content'),
+            noteBgInput: document.getElementById('note-bg'),
+            noteTextColorInput: document.getElementById('note-text-color'),
+            // Subjects
+            addSubjectBtn: document.getElementById('add-subject-btn'),
+            subjectsContainer: document.getElementById('subjects-container'),
+            subjectModal: document.getElementById('subject-modal'),
+            subjectForm: document.getElementById('subject-form'),
+            modalSubjectTitle: document.getElementById('modal-subject-title'), // Added ID in HTML needed
+            subjectIdInput: document.getElementById('subject-id'),
+            subjectNameInput: document.getElementById('subject-name'),
+            subjectColorInput: document.getElementById('subject-color'),
+            subjectIconInput: document.getElementById('subject-icon'),
+            // Modals Common
+            allModals: document.querySelectorAll('.modal'),
+        };
+
+        // === AUDIO SETUP ===
+        const sounds = {
+            complete: new Audio('https://assets.mixkit.co/sfx/preview/mixkit-achievement-bell-600.mp3'),
+            click: new Audio('https://assets.mixkit.co/sfx/preview/mixkit-select-click-1109.mp3'),
+            success: new Audio('https://assets.mixkit.co/sfx/preview/mixkit-positive-interface-beep-221.mp3'),
+            error: new Audio('https://assets.mixkit.co/sfx/preview/mixkit-small-error-alert-610.mp3'), // Added error sound
+            open: new Audio('https://assets.mixkit.co/sfx/preview/mixkit-interface-hint-notification-911.mp3'), // Added open sound
+            delete: new Audio('https://assets.mixkit.co/sfx/preview/mixkit-recycling-bin-deleting-files-1817.mp3') // Added delete sound
+        };
+
+        function playSound(soundKey) {
+            if (userSettings.sounds.enabled && sounds[soundKey]) {
+                const sound = sounds[soundKey];
+                sound.currentTime = 0;
+                sound.volume = userSettings.sounds.volume;
+                sound.play().catch(e => console.warn("Sound playback prevented:", e));
+            }
+        }
+
+        // === UTILITY FUNCTIONS ===
+        // ** CORRECTED shadeColor Function **
+        function shadeColor(color, percent) {
+            if (!color || typeof color !== 'string' || color.charAt(0) !== '#') return color; // Basic validation
+
+            let R = parseInt(color.substring(1, 3), 16);
+            let G = parseInt(color.substring(3, 5), 16);
+            let B = parseInt(color.substring(5, 7), 16);
+
+            R = parseInt(R * (100 + percent) / 100);
+            G = parseInt(G * (100 + percent) / 100);
+            B = parseInt(B * (100 + percent) / 100);
+
+            R = (R < 255) ? R : 255;
+            G = (G < 255) ? G : 255;
+            B = (B < 255) ? B : 255;
+
+            R = (R < 0) ? 0 : R; // Ensure non-negative
+            G = (G < 0) ? 0 : G;
+            B = (B < 0) ? 0 : B;
+
+            R = Math.round(R);
+            G = Math.round(G);
+            B = Math.round(B);
+
+            const RR = ((R.toString(16).length == 1) ? "0" + R.toString(16) : R.toString(16));
+            const GG = ((G.toString(16).length == 1) ? "0" + G.toString(16) : G.toString(16));
+            const BB = ((B.toString(16).length == 1) ? "0" + B.toString(16) : B.toString(16));
+
+            return "#" + RR + GG + BB;
+        }
+
+        function getDifficultyText(difficulty) {
+            switch(difficulty) {
+                case 'easy': return 'Fácil';
+                case 'medium': return 'Media';
+                case 'hard': return 'Difícil';
+                default: return difficulty;
+            }
+        }
+
+        function getAttachmentIcon(fileType) {
+             if (!fileType) return '📄';
+             if (fileType.startsWith('image/')) return '🖼️';
+             if (fileType === 'application/pdf') return '📕';
+             if (fileType.includes('word') || fileType === 'application/msword' || fileType === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') return '📝';
+             if (fileType.includes('excel') || fileType === 'application/vnd.ms-excel' || fileType === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') return '📊';
+             if (fileType.includes('presentation') || fileType === 'application/vnd.ms-powerpoint' || fileType === 'application/vnd.openxmlformats-officedocument.presentationml.presentation') return '💻';
+             if (fileType.includes('zip') || fileType.includes('compressed')) return '🗜️';
+             if (fileType.startsWith('audio/')) return '🎵';
+             if (fileType.startsWith('video/')) return '🎬';
+             if (fileType.startsWith('text/')) return '📄';
+             return '📎'; // Generic attachment
+        }
+
+         function createStarExplosion(element) {
+            const container = document.createElement('div');
+            container.className = 'completed-animation';
+            const colors = ['gold', '#ff9ff3', '#feca57', '#ff6b6b', '#48dbfb', '#1dd1a1', userSettings.colors.primary, userSettings.colors.secondary];
+            const symbols = ['⭐', '🌟', '✨', '💫', '🎉', '🎊', '💖', '🚀'];
+            const count = 15; // More stars!
+
+            for (let i = 0; i < count; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+                star.style.left = `${Math.random() * 90 + 5}%`; // Position within bounds
+                star.style.top = `${Math.random() * 90 + 5}%`;
+                star.style.color = colors[Math.floor(Math.random() * colors.length)];
+                star.style.animationDelay = `${Math.random() * 0.4}s`; // Stagger start times
+                star.style.fontSize = `${Math.random() * 0.8 + 1.2}rem`; // Vary size
+                container.appendChild(star);
+            }
+
+            // Find the parent card to append the animation relative to it
+            const card = element.closest('.card');
+            if (card) {
+                 card.style.position = 'relative'; // Ensure parent is positioned
+                 card.appendChild(container);
+                 // Remove after animation completes
+                 setTimeout(() => container.remove(), 1200);
+            } else {
+                console.warn("Could not find parent card for star explosion.");
+            }
+         }
+
+
+        function openModal(modalId) {
+             playSound('open');
+             const modal = document.getElementById(modalId);
+             if (modal) {
+                 modal.classList.add('active');
+                 // Basic Focus Management: Focus first input/select/textarea/button
+                 const focusableElement = modal.querySelector('input:not([type="hidden"]), select, textarea, button:not(.close-modal)');
+                 focusableElement?.focus();
+             } else {
+                 console.error(`Modal with ID ${modalId} not found.`);
+             }
+        }
+
+        function closeModal(modalIdOrElement) {
+             let modal = null;
+             if (typeof modalIdOrElement === 'string') {
+                 modal = document.getElementById(modalIdOrElement);
+             } else if (modalIdOrElement instanceof Element && modalIdOrElement.classList.contains('modal')) {
+                 modal = modalIdOrElement;
+             }
+
+             if (modal && modal.classList.contains('active')) {
+                 modal.classList.remove('active');
+                 // Optional: Return focus to the element that opened the modal (more complex)
+             }
+        }
+
+        function closeAllModals() {
+             DOM.allModals.forEach(modal => modal.classList.remove('active'));
+        }
+
+        function showStatusMessage(element, message, type = 'info') {
+            if (!element) return;
+            element.textContent = message;
+            element.style.color = `var(--${type === 'error' ? 'danger' : (type === 'success' ? 'success' : 'text-light')})`;
+            if (type === 'error') {
+                playSound('error');
+                element.classList.add('shake');
+                setTimeout(() => element.classList.remove('shake'), 500);
+            } else if (type === 'success') {
+                playSound('success');
+            }
+            // Clear message after a delay?
+            // setTimeout(() => { element.textContent = ''; }, 3000);
+        }
+
+        function renderEmptyState(container, message) {
+             container.innerHTML = `<p class="empty-state">${message}</p>`;
+        }
+
+        // === AUTHENTICATION ===
+        function handleLogin(event) {
+            event.preventDefault(); // Prevent default form submission
+            const email = DOM.authEmailInput.value.trim();
+            const password = DOM.authPasswordInput.value;
+
+            if (!validateEmail(email)) {
+                showStatusMessage(DOM.authStatusDiv, 'Por favor ingresa un email válido.', 'error');
+                DOM.authEmailInput.focus();
+                return;
+            }
+            if (password.length < 8) {
+                showStatusMessage(DOM.authStatusDiv, 'La contraseña debe tener al menos 8 caracteres.', 'error');
+                DOM.authPasswordInput.focus();
+                return;
+            }
+
+            // --- Simulation ---
+            // In a real app: Send credentials to backend, await response
+            showStatusMessage(DOM.authStatusDiv, 'Verificando...', 'info');
+            DOM.loginBtn.disabled = true;
+            DOM.signupBtn.disabled = true;
+
+            setTimeout(() => {
+                // Simulate success
+                currentUser = { email: email, name: email.split('@')[0] }; // Simple user object
+                localStorage.setItem('currentUser', JSON.stringify(currentUser)); // Persist login
+                showStatusMessage(DOM.authStatusDiv, `¡Bienvenido, ${currentUser.name}! Cargando datos...`, 'success');
+
+                setTimeout(() => {
+                    DOM.authSection.style.display = 'none';
+                    DOM.userContentDiv.style.display = 'block';
+                    DOM.logoutBtn.style.display = 'inline-flex';
+                    DOM.authStatusDiv.textContent = ''; // Clear status
+                    DOM.authForm.reset();
+                    DOM.loginBtn.disabled = false;
+                    DOM.signupBtn.disabled = false;
+                    loadUserData(); // Load data AFTER successful login
+                }, 1200);
+
+                // --- Simulate failure (example) ---
+                // showStatusMessage(DOM.authStatusDiv, 'Email o contraseña incorrectos.', 'error');
+                // DOM.loginBtn.disabled = false;
+                // DOM.signupBtn.disabled = false;
+
+            }, 1000); // Simulate network delay
+        }
+
+        function handleSignup(event) {
+             event.preventDefault(); // Prevent default button action if it was submit
+             const email = DOM.authEmailInput.value.trim();
+             const password = DOM.authPasswordInput.value;
+
+             if (!validateEmail(email)) {
+                 showStatusMessage(DOM.authStatusDiv, 'Por favor ingresa un email válido para registrarte.', 'error');
+                 DOM.authEmailInput.focus();
+                 return;
+             }
+             if (password.length < 8) {
+                 showStatusMessage(DOM.authStatusDiv, 'La contraseña debe tener al menos 8 caracteres.', 'error');
+                 DOM.authPasswordInput.focus();
+                 return;
+             }
+
+            // --- Simulation ---
+            // In a real app: Send credentials to backend for registration
+             showStatusMessage(DOM.authStatusDiv, 'Registrando cuenta...', 'info');
+             DOM.loginBtn.disabled = true;
+             DOM.signupBtn.disabled = true;
+
+             setTimeout(() => {
+                 // Simulate success
+                 showStatusMessage(DOM.authStatusDiv, '¡Registro exitoso! Ahora puedes iniciar sesión.', 'success');
+                 // Optionally clear fields or redirect
+                 // DOM.authForm.reset();
+                 DOM.loginBtn.disabled = false;
+                 DOM.signupBtn.disabled = false;
+
+                 // --- Simulate failure (e.g., email already exists) ---
+                 // showStatusMessage(DOM.authStatusDiv, 'Ese correo ya está registrado.', 'error');
+                 // DOM.loginBtn.disabled = false;
+                 // DOM.signupBtn.disabled = false;
+             }, 1500);
+        }
+
+        function handleLogout() {
+            playSound('click');
+            if (confirm('¿Estás seguro de que quieres cerrar sesión?')) {
+                currentUser = null;
+                localStorage.removeItem('currentUser'); // Remove persisted login
+                // Clear current data (or keep it if you want offline access)
+                tasks = [];
+                notes = [];
+                subjects = [];
+                // Reset UI
+                DOM.userContentDiv.style.display = 'none';
+                DOM.logoutBtn.style.display = 'none';
+                DOM.authSection.style.display = 'block';
+                DOM.authForm.reset();
+                DOM.authStatusDiv.textContent = '';
+                // Reset containers
+                DOM.tasksContainer.innerHTML = '';
+                DOM.notesContainer.innerHTML = '';
+                DOM.subjectsContainer.innerHTML = '';
+            }
+        }
+
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(String(email).toLowerCase());
+        }
+
+        // === USER DATA & LOCAL STORAGE ===
+        function getStorageKey() {
+            return currentUser ? `cosmic_tasks_user_${currentUser.email}` : null;
+        }
+
+        function saveUserData() {
+            const key = getStorageKey();
+            if (!key) return;
+
+            const userData = {
+                settings: userSettings,
+                tasks: tasks,
+                notes: notes,
+                subjects: subjects
+            };
+
+            try {
+                 localStorage.setItem(key, JSON.stringify(userData));
+            } catch (e) {
+                 console.error("Error saving user data to localStorage:", e);
+                 alert("Hubo un error al guardar tus datos. Es posible que el almacenamiento esté lleno.");
+            }
+        }
+
+        function loadUserData() {
+            const key = getStorageKey();
+             if (!key) return;
+
+             let savedData = null;
+             try {
+                 savedData = localStorage.getItem(key);
+             } catch (e) {
+                 console.error("Error reading user data from localStorage:", e);
+                 alert("Hubo un error al leer tus datos guardados.");
+                 return;
+             }
+
+
+             if (savedData) {
+                 try {
+                     const userData = JSON.parse(savedData);
+                     // Merge settings carefully, keeping defaults if properties are missing
+                     userSettings = { ...userSettings, ...(userData.settings || {}) };
+                     userSettings.colors = { ...userSettings.colors, ...(userData.settings?.colors || {}) };
+                     userSettings.fonts = { ...userSettings.fonts, ...(userData.settings?.fonts || {}) };
+                     userSettings.sounds = { ...userSettings.sounds, ...(userData.settings?.sounds || {}) };
+
+                     tasks = userData.tasks || [];
+                     notes = userData.notes || [];
+                     subjects = userData.subjects || [];
+
+                     // Update UI based on loaded settings
+                     updateSettingsUI();
+                     applyUserSettings();
+
+                     // Render content
+                     renderTasks();
+                     renderNotes();
+                     renderSubjects();
+
+                 } catch (e) {
+                      console.error("Error parsing user data:", e);
+                      alert("Tus datos guardados parecen estar corruptos. Se cargarán los valores predeterminados.");
+                      // Optionally clear the corrupted data: localStorage.removeItem(key);
+                      applyUserSettings(); // Apply default settings
+                      renderTasks(); // Render empty lists
+                      renderNotes();
+                      renderSubjects();
+                 }
+            } else {
+                 // No saved data for this user yet, apply defaults and render empty states
+                 applyUserSettings();
+                 renderTasks();
+                 renderNotes();
+                 renderSubjects();
+            }
+        }
+
+        // === SETTINGS ===
+        function applyUserSettings() {
+            // Theme
+            DOM.html.setAttribute('data-theme', userSettings.theme);
+            DOM.themeToggleBtn.textContent = userSettings.theme === 'light' ? '🌙' : '☀️'; // Update icon
+
+            // Colors (using CSS variables)
+            const rootStyle = document.documentElement.style;
+            rootStyle.setProperty('--primary', userSettings.colors.primary);
+            rootStyle.setProperty('--primary-dark', shadeColor(userSettings.colors.primary, -15)); // Adjust shade dynamically
+            rootStyle.setProperty('--secondary', userSettings.colors.secondary);
+            rootStyle.setProperty('--secondary-dark', shadeColor(userSettings.colors.secondary, -15));
+            rootStyle.setProperty('--accent', userSettings.colors.accent);
+            // Update dependent colors if needed (e.g., success, danger could be based on primary)
+
+            // Fonts
+            rootStyle.setProperty('--font-main', userSettings.fonts.main);
+            rootStyle.setProperty('--font-headings', userSettings.fonts.headings);
+            rootStyle.setProperty('--font-ui', userSettings.fonts.ui);
+
+            // App Background
+            if (userSettings.appBackground && userSettings.appBackground.trim() !== '') {
+                 try {
+                      // Validate if it's a URL before applying
+                      new URL(userSettings.appBackground); // Throws error if invalid
+                      DOM.appContainer.style.backgroundImage = `url('${userSettings.appBackground}')`;
+                      const opacityValue = userSettings.appBackgroundOpacity / 100;
+                      const bgColor = userSettings.theme === 'light' ? `rgba(255, 255, 255, ${opacityValue})` : `rgba(0, 0, 0, ${opacityValue})`;
+                      DOM.appContainer.style.backgroundColor = bgColor;
+                 } catch (_) {
+                      console.warn("Invalid background URL provided:", userSettings.appBackground);
+                      DOM.appContainer.style.backgroundImage = 'none';
+                      DOM.appContainer.style.backgroundColor = ''; // Reset to theme default
+                 }
+            } else {
+                DOM.appContainer.style.backgroundImage = 'none';
+                DOM.appContainer.style.backgroundColor = ''; // Reset to theme default
+            }
+
+            // Sounds volume (already handled by playSound)
+        }
+
+        function updateSettingsUI() {
+            // Populate settings form fields with current userSettings values
+            DOM.primaryColorInput.value = userSettings.colors.primary;
+            DOM.secondaryColorInput.value = userSettings.colors.secondary;
+            DOM.accentColorInput.value = userSettings.colors.accent;
+            DOM.appBgImageInput.value = userSettings.appBackground || '';
+            DOM.appBgOpacityInput.value = userSettings.appBackgroundOpacity;
+            DOM.opacityValueSpan.textContent = userSettings.appBackgroundOpacity;
+            DOM.fontMainSelect.value = userSettings.fonts.main;
+            DOM.fontHeadingsSelect.value = userSettings.fonts.headings;
+            DOM.fontUiSelect.value = userSettings.fonts.ui;
+            DOM.soundsEnabledCheckbox.checked = userSettings.sounds.enabled;
+            DOM.volumeLevelInput.value = userSettings.sounds.volume * 100;
+            DOM.volumeValueSpan.textContent = Math.round(userSettings.sounds.volume * 100);
+        }
+
+        function saveSettings() {
+            playSound('success');
+
+            // Read values from the form
+            userSettings = {
+                theme: userSettings.theme, // Theme is changed separately
+                colors: {
+                    primary: DOM.primaryColorInput.value,
+                    secondary: DOM.secondaryColorInput.value,
+                    accent: DOM.accentColorInput.value
+                },
+                fonts: {
+                    main: DOM.fontMainSelect.value,
+                    headings: DOM.fontHeadingsSelect.value,
+                    ui: DOM.fontUiSelect.value
+                },
+                sounds: {
+                    enabled: DOM.soundsEnabledCheckbox.checked,
+                    volume: parseFloat(DOM.volumeLevelInput.value) / 100
+                },
+                appBackground: DOM.appBgImageInput.value.trim(),
+                appBackgroundOpacity: parseInt(DOM.appBgOpacityInput.value)
+            };
+
+            applyUserSettings();
+            saveUserData(); // Persist changes
+            closeSettingsMenu();
+             // Re-render elements affected by settings (like subject colors/icons)
+             renderSubjects();
+             renderTasks();
+             renderNotes(); // Notes might use accent color
+        }
+
+        function toggleTheme() {
+             playSound('click');
+             userSettings.theme = userSettings.theme === 'light' ? 'dark' : 'light';
+             applyUserSettings();
+             saveUserData();
+        }
+
+        function openSettingsMenu() {
+             playSound('open');
+             updateSettingsUI(); // Ensure form reflects current settings
+             DOM.settingsMenu.classList.add('active');
+        }
+         function closeSettingsMenu() {
+             DOM.settingsMenu.classList.remove('active');
+         }
+
+        // === TASKS ===
+        function renderTasks() {
+             DOM.tasksContainer.innerHTML = ''; // Clear previous tasks
+
+             const pendingTasks = tasks.filter(task => !task.completed);
+
+             if (pendingTasks.length === 0) {
+                 renderEmptyState(DOM.tasksContainer, "¡Todo listo por hoy! 🎉 Añade una nueva tarea.");
+                 return;
+             }
+
+             // Sort tasks? (e.g., by due date, creation date)
+              pendingTasks.sort((a, b) => (a.dueDate && b.dueDate) ? new Date(a.dueDate) - new Date(b.dueDate) : (a.dueDate ? -1 : (b.dueDate ? 1 : 0)) || new Date(b.createdAt) - new Date(a.createdAt));
+
+
+             pendingTasks.forEach(task => {
+                const taskElement = document.createElement('div');
+                taskElement.className = 'card fade-in';
+                taskElement.dataset.id = task.id;
+
+                const subject = subjects.find(s => s.id === task.subjectId);
+                const subjectColor = subject ? subject.color : userSettings.colors.primary;
+                const subjectIcon = subject ? subject.icon || '📚' : '📌';
+                const subjectName = subject ? subject.name : 'General';
+                const dueDate = task.dueDate ? new Date(task.dueDate + 'T00:00:00').toLocaleDateString() : 'Sin fecha'; // Ensure correct date parsing
+
+                 // Build attachments HTML
+                let attachmentsHTML = '';
+                if (task.attachments && task.attachments.length > 0) {
+                    attachmentsHTML = '<div class="attachments-container">';
+                    task.attachments.forEach((att, index) => {
+                         // In a real app, att.url would be needed to make it clickable/downloadable
+                         attachmentsHTML += `
+                            <div class="attachment" title="${att.name} (${att.type || 'unknown'})">
+                                <span class="attachment-icon">${getAttachmentIcon(att.type)}</span>
+                                <span class="attachment-name">${att.name.length > 25 ? att.name.substring(0, 22) + '...' : att.name}</span>
+                                <button class="delete-attachment icon-button" data-task-id="${task.id}" data-attachment-index="${index}" data-tooltip="Eliminar adjunto" aria-label="Eliminar ${att.name}">×</button>
+                            </div>
+                        `;
+                    });
+                    attachmentsHTML += '</div>';
+                }
+
+                taskElement.innerHTML = `
+                     <div class="task-header">
+                        <h3 class="task-title" style="color: ${subjectColor}">
+                             <span style="margin-right: 0.5rem;">${subjectIcon}</span>
+                             ${task.title}
+                        </h3>
+                        <div class="task-actions">
+                            <span class="difficulty ${task.difficulty}" title="Dificultad ${getDifficultyText(task.difficulty)}">${getDifficultyText(task.difficulty)}</span>
+                            <button class="edit-btn icon-button" data-id="${task.id}" data-tooltip="Editar Tarea" aria-label="Editar ${task.title}">✏️</button>
+                            <button class="complete-btn icon-button" data-id="${task.id}" data-tooltip="Marcar como Completada" aria-label="Completar ${task.title}">✅</button>
+                        </div>
+                    </div>
+                    <p style="margin: 0.5rem 0; font-size: 0.9rem;">
+                         <strong>${subjectName}</strong> - Entrega: ${dueDate}
+                    </p>
+                    <p style="margin-bottom: 0.5rem;">${task.description || '<span class="text-muted">Sin descripción</span>'}</p>
+                    ${attachmentsHTML}
+                `;
+
+                 // Set the accent border color
+                 taskElement.style.setProperty('--card-accent-color', subjectColor); // Use a variable if needed, or direct style
+                 taskElement.style.borderLeft = `6px solid ${subjectColor}`;
+
+
+                 DOM.tasksContainer.appendChild(taskElement);
+             });
+        }
+
+        function showTaskModal(taskId = null) {
+             tempTaskAttachments = []; // Reset temporary attachments
+             DOM.taskAttachmentsPreview.innerHTML = ''; // Clear preview
+
+             // Populate subject dropdown
+             DOM.taskSubjectSelect.innerHTML = '<option value="">-- Selecciona una materia --</option>';
+             subjects.forEach(subject => {
+                 const option = document.createElement('option');
+                 option.value = subject.id;
+                 option.textContent = `${subject.icon || '📚'} ${subject.name}`;
+                 DOM.taskSubjectSelect.appendChild(option);
+             });
+
+             if (taskId) {
+                 const task = tasks.find(t => t.id === taskId);
+                 if (task) {
+                     DOM.modalTaskTitle.textContent = '✏️ Editar Tarea';
+                     DOM.taskIdInput.value = task.id;
+                     DOM.taskTitleInput.value = task.title;
+                     DOM.taskDescriptionInput.value = task.description || '';
+                     DOM.taskDifficultySelect.value = task.difficulty;
+                     DOM.taskDueInput.value = task.dueDate || '';
+                     DOM.taskSubjectSelect.value = task.subjectId || '';
+
+                     // Populate existing attachments (these are just metadata now)
+                     task.attachments?.forEach(att => renderAttachmentPreview(att, DOM.taskAttachmentsPreview, task.id));
+                     // Store existing metadata to compare later if needed
+                     tempTaskAttachments = [...(task.attachments || [])];
+
+                 } else {
+                      console.error("Task to edit not found:", taskId);
+                      return; // Don't open modal if task not found
+                 }
+             } else {
+                 // New Task
+                 DOM.modalTaskTitle.textContent = '📝 Nueva Tarea';
+                 DOM.taskForm.reset(); // Reset form fields
+                 DOM.taskIdInput.value = ''; // Ensure ID is empty
+                 DOM.taskDifficultySelect.value = 'medium'; // Default difficulty
+                 tempTaskAttachments = [];
+                 DOM.taskAttachmentsPreview.innerHTML = '';
+             }
+             openModal('task-modal');
+        }
+
+        function saveTask(event) {
+            event.preventDefault();
+            playSound('success');
+
+            const taskId = DOM.taskIdInput.value;
+            // Create basic task data from form
+            const taskData = {
+                title: DOM.taskTitleInput.value.trim(),
+                description: DOM.taskDescriptionInput.value.trim(),
+                difficulty: DOM.taskDifficultySelect.value,
+                dueDate: DOM.taskDueInput.value || null, // Store as null if empty
+                subjectId: DOM.taskSubjectSelect.value || null,
+                completed: false,
+                attachments: [...tempTaskAttachments] // Use the temp array which holds metadata
+            };
+
+             // Basic Validation
+             if (!taskData.title) {
+                 alert("El título de la tarea es obligatorio.");
+                 DOM.taskTitleInput.focus();
+                 return;
+             }
+             if (!taskData.subjectId) {
+                 alert("Debes seleccionar una materia.");
+                 DOM.taskSubjectSelect.focus();
+                 return;
+             }
+
+
+            if (taskId) {
+                // Editing existing task
+                const index = tasks.findIndex(t => t.id === taskId);
+                if (index !== -1) {
+                    // Merge new data, keeping original ID, completed status, and createdAt
+                    tasks[index] = {
+                        ...tasks[index], // Keep existing properties like id, createdAt, completed status
+                        ...taskData       // Overwrite with new form data (including attachments)
+                    };
+                } else {
+                     console.error("Failed to find task to update with ID:", taskId);
+                     return;
+                }
+            } else {
+                // Creating new task
+                taskData.id = Date.now().toString(); // Simple unique ID
+                taskData.createdAt = new Date().toISOString();
+                tasks.push(taskData);
+            }
+
+            saveUserData();
+            renderTasks(); // Re-render the list
+            closeModal('task-modal');
+        }
+
+        function completeTask(taskId) {
+            const taskIndex = tasks.findIndex(t => t.id === taskId);
+            if (taskIndex !== -1) {
+                 // We don't actually delete, just mark as completed
+                 // To truly remove: tasks.splice(taskIndex, 1);
+                tasks[taskIndex].completed = true;
+                tasks[taskIndex].completedAt = new Date().toISOString();
+
+                // Find the card element to potentially remove or style differently
+                const taskCard = DOM.tasksContainer.querySelector(`.card[data-id="${taskId}"]`);
+                if (taskCard) {
+                     taskCard.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                     taskCard.style.opacity = '0';
+                     taskCard.style.transform = 'scale(0.9)';
+                     setTimeout(() => {
+                          // taskCard.remove(); // Or just call renderTasks()
+                          renderTasks(); // Re-render to reflect completion
+                          saveUserData(); // Save after visual confirmation
+                     }, 500); // Delay removal slightly after animation
+                } else {
+                     // Fallback if card not found immediately
+                     renderTasks();
+                     saveUserData();
+                }
+            }
+        }
+
+         function renderAttachmentPreview(attachmentMeta, previewContainer, taskId = null, isTemporary = false) {
+             const attElement = document.createElement('div');
+             attElement.className = 'attachment';
+             attElement.title = `${attachmentMeta.name} (${attachmentMeta.type || 'unknown'})`;
+
+             // Store index for deletion from the temporary array if it's temporary
+             const attachmentIndex = isTemporary ? tempTaskAttachments.findIndex(a => a.name === attachmentMeta.name && a.lastModified === attachmentMeta.lastModified) : -1;
+
+             attElement.innerHTML = `
+                 <span class="attachment-icon">${getAttachmentIcon(attachmentMeta.type)}</span>
+                 <span class="attachment-name">${attachmentMeta.name.length > 20 ? attachmentMeta.name.substring(0, 17) + '...' : attachmentMeta.name}</span>
+                 <button type="button" class="delete-attachment icon-button" ${taskId ? `data-task-id="${taskId}"` : ''} data-attachment-name="${attachmentMeta.name}" ${isTemporary ? `data-temp-index="${attachmentIndex}"` : ''} data-tooltip="Eliminar adjunto" aria-label="Eliminar ${attachmentMeta.name}">×</button>
+             `;
+             previewContainer.appendChild(attElement);
+         }
+
+
+         function handleAddTaskAttachmentChange(event) {
+             const files = Array.from(event.target.files);
+             if (!files.length) return;
+
+             // Add new files to the temporary array and render preview
+             files.forEach(file => {
+                  // Avoid duplicates (simple check by name and size)
+                  if (!tempTaskAttachments.some(att => att.name === file.name && att.size === file.size)) {
+                       const fileMeta = {
+                            name: file.name,
+                            type: file.type,
+                            size: file.size,
+                            lastModified: file.lastModified // For more robust duplicate checking if needed
+                            // In a real app, you'd upload the file here and get a URL/ID
+                       };
+                       tempTaskAttachments.push(fileMeta);
+                       renderAttachmentPreview(fileMeta, DOM.taskAttachmentsPreview, null, true); // Render as temporary
+                  }
+             });
+
+             // Clear the file input so the same file can be selected again if removed
+             event.target.value = null;
+         }
+
+         function deleteTaskAttachment(taskId, attachmentIdentifier, isTemporary = false) {
+             playSound('delete');
+
+             if (isTemporary) {
+                 // Remove from the temporary array used in the modal
+                 const indexToRemove = parseInt(attachmentIdentifier); // Using index passed in data attribute
+                 if (!isNaN(indexToRemove) && indexToRemove >= 0 && indexToRemove < tempTaskAttachments.length) {
+                     tempTaskAttachments.splice(indexToRemove, 1);
+                 } else {
+                      // Fallback: try finding by name if index is bad
+                      tempTaskAttachments = tempTaskAttachments.filter(att => att.name !== attachmentIdentifier);
+                 }
+             } else {
+                 // Remove from the persisted task data
+                 const task = tasks.find(t => t.id === taskId);
+                 if (task && task.attachments) {
+                     // If identifier is index
+                     const indexToRemove = parseInt(attachmentIdentifier);
+                      if (!isNaN(indexToRemove) && indexToRemove >= 0 && indexToRemove < task.attachments.length) {
+                          task.attachments.splice(indexToRemove, 1);
+                      } else {
+                           // Fallback: If identifier is name (less reliable if names repeat)
+                           // task.attachments = task.attachments.filter(att => att.name !== attachmentIdentifier);
+                           console.warn("Could not remove attachment by index, try using unique identifier if possible");
+                      }
+                     saveUserData();
+                     renderTasks(); // Re-render task list to show change
+                 }
+             }
+         }
+
+        // === NOTES ===
+        function renderNotes() {
+            DOM.notesContainer.innerHTML = '';
+
+             if (notes.length === 0) {
+                renderEmptyState(DOM.notesContainer, "Aún no hay notas. 📝 ¡Crea tu primera nota!");
+                return;
+             }
+
+            // Sort notes? (e.g., newest first)
+             notes.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+            notes.forEach(note => {
+                const noteElement = document.createElement('div');
+                noteElement.className = 'card note-card fade-in';
+                noteElement.dataset.id = note.id;
+
+                // Apply background and text color
+                if (note.background) {
+                     if (note.background.startsWith('http') || note.background.startsWith('/')) {
+                          noteElement.style.backgroundImage = `url('${note.background}')`;
+                     } else {
+                          // Assume it's a color if not a typical URL start
+                          noteElement.style.backgroundColor = note.background;
+                           noteElement.style.backgroundImage = 'none'; // Ensure bg image is cleared
+                     }
+                } else {
+                     // Default background if none is set (uses ::before accent color)
+                      noteElement.style.backgroundColor = '';
+                      noteElement.style.backgroundImage = 'none';
+                }
+                 noteElement.style.color = note.textColor || '#ffffff'; // Default to white text
+
+
+                // Simple markdown interpretation (e.g., **bold**, *italic*) - very basic
+                 const formattedContent = (note.content || '')
+                     .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                     .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                     .replace(/\n/g, '<br>'); // Render newlines
+
+                noteElement.innerHTML = `
+                    <div class="note-content">
+                         <div> <!-- Wrapper for title and content -->
+                            <h3 class="note-title">${note.title}</h3>
+                            <p>${formattedContent || '<span class="text-muted">Nota vacía</span>'}</p>
+                         </div>
+                        <div class="note-actions">
+                            <button class="edit-btn icon-button" data-id="${note.id}" data-tooltip="Editar Nota" aria-label="Editar ${note.title}">✏️</button>
+                            <button class="delete-btn icon-button" data-id="${note.id}" data-tooltip="Eliminar Nota" aria-label="Eliminar ${note.title}">🗑️</button>
+                        </div>
+                    </div>
+                `;
+                DOM.notesContainer.appendChild(noteElement);
+            });
+        }
+
+        function showNoteModal(noteId = null) {
+             // Reset temporary attachments if using them for notes
+             // tempNoteAttachments = [];
+             // DOM.noteAttachmentsPreview.innerHTML = '';
+
+             if (noteId) {
+                 const note = notes.find(n => n.id === noteId);
+                 if (note) {
+                      DOM.noteIdInput.value = note.id;
+                      DOM.noteTitleInput.value = note.title;
+                      DOM.noteContentInput.value = note.content || '';
+                      DOM.noteBgInput.value = note.background || '';
+                      DOM.noteTextColorInput.value = note.textColor || '#ffffff';
+                      // DOM.modalNoteTitle.textContent = '✏️ Editar Nota'; // Uncomment if using modal title element
+                      // Populate note attachments if implemented
+                 } else {
+                     console.error("Note to edit not found:", noteId);
+                     return;
+                 }
+             } else {
+                  // New Note
+                  DOM.noteForm.reset();
+                  DOM.noteIdInput.value = '';
+                  DOM.noteTextColorInput.value = '#ffffff'; // Default text color
+                  // DOM.modalNoteTitle.textContent = '📝 Nueva Nota'; // Uncomment if using modal title element
+             }
+             openModal('note-modal');
+        }
+
+        function saveNote(event) {
+            event.preventDefault();
+            playSound('success');
+
+            const noteId = DOM.noteIdInput.value;
+            const noteData = {
+                title: DOM.noteTitleInput.value.trim(),
+                content: DOM.noteContentInput.value.trim(),
+                background: DOM.noteBgInput.value.trim(),
+                textColor: DOM.noteTextColorInput.value,
+                // attachments: [...tempNoteAttachments] // If implemented
+            };
+
+             if (!noteData.title) {
+                 alert("El título de la nota es obligatorio.");
+                 DOM.noteTitleInput.focus();
+                 return;
+             }
+
+            if (noteId) {
+                // Editing existing note
+                const index = notes.findIndex(n => n.id === noteId);
+                if (index !== -1) {
+                    notes[index] = { ...notes[index], ...noteData, updatedAt: new Date().toISOString() };
+                } else {
+                      console.error("Failed to find note to update with ID:", noteId);
+                      return;
+                }
+            } else {
+                // Creating new note
+                noteData.id = Date.now().toString();
+                noteData.createdAt = new Date().toISOString();
+                notes.push(noteData);
+            }
+
+            saveUserData();
+            renderNotes();
+            closeModal('note-modal');
+        }
+
+        function deleteNote(noteId) {
+             playSound('click'); // Sound before confirmation
+             if (confirm('¿Estás seguro de que quieres eliminar esta nota? Esta acción no se puede deshacer.')) {
+                 playSound('delete'); // Sound on confirmation
+                 notes = notes.filter(n => n.id !== noteId);
+                 saveUserData();
+                 renderNotes();
+             }
+        }
+
+        // === SUBJECTS ===
+        function renderSubjects() {
+            DOM.subjectsContainer.innerHTML = '';
+
+             if (subjects.length === 0) {
+                renderEmptyState(DOM.subjectsContainer, "Organiza tus tareas por materias. 📚 ¡Añade la primera!");
+                return;
+            }
+
+             // Sort subjects alphabetically
+             subjects.sort((a, b) => a.name.localeCompare(b.name));
+
+            subjects.forEach(subject => {
+                const subjectElement = document.createElement('div');
+                subjectElement.className = 'card fade-in';
+                // subjectElement.style.borderLeft = `6px solid ${subject.color}`; // Already styled in CSS via class
+                subjectElement.style.setProperty('--card-accent-color', subject.color); // Use variable for border
+                 subjectElement.style.borderLeft = `6px solid ${subject.color}`;
+                subjectElement.dataset.id = subject.id;
+
+                subjectElement.innerHTML = `
+                     <div class="subject-info">
+                        <span style="font-size: 1.8rem;">${subject.icon || '📚'}</span>
+                        <h3 class="subject-title" style="color: ${subject.color}">${subject.name}</h3>
+                    </div>
+                    <div class="subject-actions">
+                        <button class="edit-btn icon-button" data-id="${subject.id}" data-tooltip="Editar Materia" aria-label="Editar ${subject.name}">✏️</button>
+                        <button class="delete-btn icon-button" data-id="${subject.id}" data-tooltip="Eliminar Materia" aria-label="Eliminar ${subject.name}">🗑️</button>
+                    </div>
+                `;
+                DOM.subjectsContainer.appendChild(subjectElement);
+            });
+        }
+
+        function showSubjectModal(subjectId = null) {
+             if (subjectId) {
+                 const subject = subjects.find(s => s.id === subjectId);
+                 if (subject) {
+                     DOM.subjectIdInput.value = subject.id;
+                     DOM.subjectNameInput.value = subject.name;
+                     DOM.subjectColorInput.value = subject.color || userSettings.colors.primary;
+                     DOM.subjectIconInput.value = subject.icon || '';
+                     // DOM.modalSubjectTitle.textContent = '✏️ Editar Materia'; // Uncomment if using modal title
+                 } else {
+                     console.error("Subject to edit not found:", subjectId);
+                     return;
+                 }
+             } else {
+                 // New Subject
+                 DOM.subjectForm.reset();
+                 DOM.subjectIdInput.value = '';
+                 DOM.subjectColorInput.value = userSettings.colors.primary; // Default color
+                 // DOM.modalSubjectTitle.textContent = '📚 Nueva Materia'; // Uncomment if using modal title
+             }
+             openModal('subject-modal');
+        }
+
+        function saveSubject(event) {
+            event.preventDefault();
+            playSound('success');
+
+            const subjectId = DOM.subjectIdInput.value;
+            const subjectData = {
+                name: DOM.subjectNameInput.value.trim(),
+                color: DOM.subjectColorInput.value,
+                icon: DOM.subjectIconInput.value.trim()
+            };
+
+             if (!subjectData.name) {
+                 alert("El nombre de la materia es obligatorio.");
+                 DOM.subjectNameInput.focus();
+                 return;
+             }
+
+            if (subjectId) {
+                // Editing existing subject
+                const index = subjects.findIndex(s => s.id === subjectId);
+                if (index !== -1) {
+                    subjects[index] = { ...subjects[index], ...subjectData };
+                } else {
+                     console.error("Failed to find subject to update with ID:", subjectId);
+                     return;
+                }
+            } else {
+                // Creating new subject
+                subjectData.id = Date.now().toString();
+                subjects.push(subjectData);
+            }
+
+            saveUserData();
+            renderSubjects(); // Update subject list display
+            renderTasks(); // Update tasks as their subject color/icon might change
+            closeModal('subject-modal');
+        }
+
+        function deleteSubject(subjectId) {
+             playSound('click');
+             // Check if any tasks use this subject
+             const tasksUsingSubject = tasks.filter(task => task.subjectId === subjectId && !task.completed);
+
+             if (tasksUsingSubject.length > 0) {
+                 playSound('error');
+                 alert(`No puedes eliminar esta materia porque ${tasksUsingSubject.length} tarea(s) activa(s) ${tasksUsingSubject.length === 1 ? 'la está' : 'la están'} usando. Completa, elimina o reasigna esas tareas primero.`);
+                 return;
+             }
+
+             if (confirm(`¿Estás seguro de que quieres eliminar la materia "${subjects.find(s => s.id === subjectId)?.name || ''}"? Esta acción no se puede deshacer.`)) {
+                 playSound('delete');
+                 subjects = subjects.filter(s => s.id !== subjectId);
+                 saveUserData();
+                 renderSubjects();
+                 renderTasks(); // Re-render tasks in case any were linked to 'General' implicitly
+             }
+        }
+
+        // === EVENT LISTENERS ===
+        function setupEventListeners() {
+            // Static Buttons & Forms
+            DOM.authForm.addEventListener('submit', handleLogin);
+            DOM.signupBtn.addEventListener('click', handleSignup);
+            DOM.logoutBtn.addEventListener('click', handleLogout);
+
+            DOM.addTaskBtn.addEventListener('click', () => showTaskModal());
+            DOM.addNoteBtn.addEventListener('click', () => showNoteModal());
+            DOM.addSubjectBtn.addEventListener('click', () => showSubjectModal());
+
+            DOM.settingsBtn.addEventListener('click', openSettingsMenu);
+            DOM.closeSettingsBtn.addEventListener('click', closeSettingsMenu);
+             // Use combined save button for all settings panels
+            DOM.settingsMenu.addEventListener('click', (e) => {
+                 if (e.target.matches('#save-settings, #save-settings-fonts, #save-settings-sounds')) {
+                      saveSettings();
+                 }
+            });
+            // DOM.saveSettingsBtn.addEventListener('click', saveSettings); // Original single button
+
+            DOM.themeToggleBtn.addEventListener('click', toggleTheme);
+
+            // Forms Submission
+            DOM.taskForm.addEventListener('submit', saveTask);
+            DOM.noteForm.addEventListener('submit', saveNote);
+            DOM.subjectForm.addEventListener('submit', saveSubject);
+
+            // File Input Triggers
+             DOM.addTaskAttachmentsBtn.addEventListener('click', () => DOM.taskAttachmentsInput.click());
+            // Add similar for notes if implemented
+            // DOM.addNoteAttachmentsBtn.addEventListener('click', () => DOM.noteAttachmentsInput.click());
+
+            // File Input Change Handlers
+             DOM.taskAttachmentsInput.addEventListener('change', handleAddTaskAttachmentChange);
+            // Add similar for notes if implemented
+            // DOM.noteAttachmentsInput.addEventListener('change', handleAddNoteAttachmentChange);
+
+
+            // Settings Range Inputs Real-time Update
+            DOM.appBgOpacityInput.addEventListener('input', (e) => {
+                DOM.opacityValueSpan.textContent = e.target.value;
+                // Optionally apply visual change in real-time (might be laggy)
+                // userSettings.appBackgroundOpacity = parseInt(e.target.value);
+                // applyUserSettings();
+            });
+            DOM.volumeLevelInput.addEventListener('input', (e) => {
+                const volumePercent = e.target.value;
+                DOM.volumeValueSpan.textContent = volumePercent;
+                userSettings.sounds.volume = parseFloat(volumePercent) / 100;
+                // No need to save or apply settings here, just update internal value for next playSound call
+            });
+
+             // Settings Color Inputs Real-time Preview (Optional, can be intensive)
+             /*
+             ['primary', 'secondary', 'accent'].forEach(colorType => {
+                  DOM[`${colorType}ColorInput`].addEventListener('input', (e) => {
+                       document.documentElement.style.setProperty(`--${colorType}`, e.target.value);
+                       if(colorType === 'primary') {
+                            document.documentElement.style.setProperty('--primary-dark', shadeColor(e.target.value, -15));
+                       }
+                       // Add for secondary dark etc. if needed
+                  });
+             });
+             */
+
+
+            // Tab Switching (Main content and Settings)
+             DOM.tabsContainer.addEventListener('click', (e) => {
+                 const tabButton = e.target.closest('.tab');
+                 if (!tabButton) return;
+                 playSound('click');
+                 const tabId = tabButton.dataset.tab;
+
+                 // Deactivate all tabs and content in this group
+                 DOM.tabsContainer.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                 DOM.tabContents.forEach(c => c.classList.remove('active'));
+
+                 // Activate the clicked tab and corresponding content
+                 tabButton.classList.add('active');
+                 const contentToShow = document.getElementById(`${tabId}-tab`);
+                 if(contentToShow) contentToShow.classList.add('active');
+             });
+
+             DOM.settingsTabsContainer.addEventListener('click', (e) => {
+                 const tabButton = e.target.closest('.settings-tab');
+                 if (!tabButton) return;
+                 playSound('click');
+                 const tabId = tabButton.dataset.tab;
+
+                 DOM.settingsTabsContainer.querySelectorAll('.settings-tab').forEach(t => t.classList.remove('active'));
+                 DOM.settingsContentContainers.forEach(c => c.classList.remove('active'));
+
+                 tabButton.classList.add('active');
+                 const contentToShow = document.getElementById(`${tabId}-settings`);
+                 if(contentToShow) contentToShow.classList.add('active');
+             });
+
+
+            // Delegated Event Listener for Dynamic Content (Tasks, Notes, Subjects, Modals)
+            document.addEventListener('click', (e) => {
+                // Complete Task Button
+                 const completeButton = e.target.closest('.complete-btn');
+                 if (completeButton) {
+                     e.preventDefault();
+                     const taskId = completeButton.dataset.id;
+                     playSound('complete');
+                     createStarExplosion(completeButton); // Trigger animation originating near the button
+                     // Delay actual completion slightly for animation visibility
+                     completeButton.disabled = true; // Prevent double clicks
+                     setTimeout(() => {
+                         completeTask(taskId);
+                     }, 800); // Adjust timing as needed
+                     return; // Stop further processing for this click
+                 }
+
+                 // Edit Button (Tasks, Notes, Subjects)
+                 const editButton = e.target.closest('.edit-btn');
+                 if (editButton) {
+                     e.preventDefault();
+                     const itemId = editButton.dataset.id;
+                     playSound('click');
+                     if (editButton.closest('#tasks-container')) {
+                         showTaskModal(itemId);
+                     } else if (editButton.closest('#notes-container')) {
+                         showNoteModal(itemId);
+                     } else if (editButton.closest('#subjects-container')) {
+                         showSubjectModal(itemId);
+                     }
+                     return;
+                 }
+
+                 // Delete Button (Notes, Subjects)
+                 const deleteButton = e.target.closest('.delete-btn');
+                 if (deleteButton) {
+                      e.preventDefault();
+                      const itemId = deleteButton.dataset.id;
+                      // Sound played within delete functions after confirmation
+                      if (deleteButton.closest('#notes-container')) {
+                          deleteNote(itemId);
+                      } else if (deleteButton.closest('#subjects-container')) {
+                          deleteSubject(itemId);
+                      }
+                      return;
+                 }
+
+                 // Delete Attachment Button (Tasks - inside cards or modal)
+                 const deleteAttachmentButton = e.target.closest('.delete-attachment');
+                 if (deleteAttachmentButton) {
+                     e.preventDefault();
+                     const taskId = deleteAttachmentButton.dataset.taskId;
+                     const attachmentIdentifier = deleteAttachmentButton.dataset.attachmentIndex ?? deleteAttachmentButton.dataset.attachmentName; // Prefer index if available
+                     const tempIndex = deleteAttachmentButton.dataset.tempIndex;
+                     const isTemporary = tempIndex !== undefined;
+
+
+                     if (isTemporary && tempIndex) {
+                          deleteTaskAttachment(null, tempIndex, true); // Pass index for temp removal
+                          deleteAttachmentButton.closest('.attachment').remove(); // Remove from preview immediately
+                     } else if (!isTemporary && taskId && attachmentIdentifier) {
+                           if (confirm("¿Eliminar este archivo adjunto?")) {
+                                deleteTaskAttachment(taskId, attachmentIdentifier, false);
+                           }
+                     } else {
+                         console.warn("Missing data for attachment deletion", {taskId, attachmentIdentifier, isTemporary});
+                     }
+                     return;
+                 }
+
+
+                 // Close Modal Button
+                 const closeModalButton = e.target.closest('.close-modal');
+                 if (closeModalButton) {
+                     e.preventDefault();
+                     playSound('click');
+                     const modal = closeModalButton.closest('.modal');
+                     if (modal) {
+                         closeModal(modal);
+                     }
+                     return;
+                 }
+
+                 // Click outside modal to close (optional)
+                 /*
+                 if (e.target.classList.contains('modal') && e.target.classList.contains('active')) {
+                      closeModal(e.target);
+                      return;
+                 }
+                 */
+            });
+        }
+
+        // === INITIALIZATION ===
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log("Cosmic Tasks Premium Initializing...");
+            setupEventListeners();
+
+            // Check for logged-in user on page load
+            try {
+                const savedUser = localStorage.getItem('currentUser');
+                if (savedUser) {
+                    currentUser = JSON.parse(savedUser);
+                    DOM.authSection.style.display = 'none';
+                    DOM.userContentDiv.style.display = 'block';
+                    DOM.logoutBtn.style.display = 'inline-flex';
+                    loadUserData(); // Load data for the logged-in user
+                } else {
+                    // No user logged in, ensure auth form is visible and user content hidden
+                    DOM.authSection.style.display = 'block';
+                    DOM.userContentDiv.style.display = 'none';
+                    DOM.logoutBtn.style.display = 'none';
+                    applyUserSettings(); // Apply default settings visually
+                }
+            } catch (e) {
+                 console.error("Error checking for current user:", e);
+                 // Fallback to showing login form
+                 DOM.authSection.style.display = 'block';
+                 DOM.userContentDiv.style.display = 'none';
+                 DOM.logoutBtn.style.display = 'none';
+                 applyUserSettings();
+            }
+        });
+
+    </script>
+</body>
+</html>
